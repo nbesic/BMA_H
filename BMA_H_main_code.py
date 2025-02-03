@@ -1,6 +1,9 @@
-#	"Remote sensing-based forest canopy height mapping:
-# 	some models are useful, but might they be even more so
-# 	if combined?"
+#	N. Besic, N. Picard, C. Vega, J.-D. Bontemps, L. Hertzog, J.-P. Renaud, 
+#	F. Fogel, M. Schwartz, A. Pellissier-Tanon, G. Destouet, F. Mortier, 
+#	M. Planells-Rodriguez, and P. Ciais , “Remote sensing-based forest canopy 
+# 	height mapping: some models are useful, but might they provide us with even 
+#	more insights when combined?,” Geoscientific Model Development,
+#	18, 337–359, 2025. DOI: 10.5194/gmd-18-337-2025.
 #
 #	Main code (Fig. 3, 4, 5, 7 and B1)
 #	Please see complementary code 1 (Fig. 2)
@@ -138,7 +141,7 @@ while (delta > epsilon) & (iter < maxiter):
 		z_new = norm.pdf(np.tile(I[:, K][np.newaxis].T, [1, K]), I[:, range(K)], np.tile(sigma, [N, 1]))
 	
 	elif pdf_ind == 2:
-		z_new = np.apply_along_axis(py_sweep, 1, lognorm.pdf(np.tile(I[:, K][np.newaxis].T, [1, K]), I[:, range(K)], np.tile(sigma, [N, 1])), w)
+		z_new = lognorm.pdf(np.tile(I[:, K][np.newaxis].T, [1, K]), I[:, range(K)], np.tile(sigma, [N, 1]))
 
 	z_new = z_new / np.tile(np.nansum(z_new, axis = 1)[np.newaxis].T,K)
 
